@@ -1,0 +1,6 @@
+---
+applications:
+- name: pcf-ms-zuul
+  memory: 1G
+  instances: 1
+  path: ./target/zuul-0.0.1-SNAPSHOT.jar
