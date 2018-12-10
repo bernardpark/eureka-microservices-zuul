@@ -1,0 +1,30 @@
+server:
+  port: 8762
+      
+spring:
+  application:
+    name: zuul-server
+
+zuul:
+  prefix: /api
+  ignored-services: '*'
+  routes:
+    guestbook-service:
+      path: /guestbook/**
+      serviceId: guestbook  
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+ 
+---
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    nonSecurePort: 80
+  client:
+    service-url:
+      defaultZone: ${vcap.services.eureka-server.credentials.url}
